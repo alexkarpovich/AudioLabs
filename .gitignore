@@ -1,0 +1,3 @@
+.vagrant
+dev/web/dest
+dev/node_modules
