@@ -17,7 +17,7 @@ npm-packages:
     npm.installed:
         - names:
             - bower
-            - grunt-cli
+            - gulp
             - forever
             - express-generator
         - require:

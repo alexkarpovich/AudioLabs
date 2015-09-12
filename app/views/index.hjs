@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
     <head>
-        <link rel="stylesheet" href="/stylesheets/style.css"/>
+        <link rel="stylesheet" href="/dest/styles/style.css"/>        
     </head>
     <body>
         <div class="main">
@@ -13,6 +13,6 @@
         </div>
         <p id="volume"></p>
 
-        <script src="/javascripts/main.js"></script>
+        <script type="text/javascript" src="/dest/js/main.js"></script>
     </body>
 </html>
