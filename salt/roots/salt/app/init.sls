@@ -13,21 +13,12 @@ npm:
         - require:
             - pkg: nodejs
 
-bower:
-    npm:
-        - installed
+npm-packages:
+    npm.installed:
+        - names:
+            - bower
+            - grunt-cli
+            - forever
+            - express-generator
         - require:
             - pkg: npm
-
-less:
-    npm:
-        - installed
-        - require:
-            - pkg: npm
-
-yuglify:
-    npm:
-        - installed
-        - require:
-            - pkg: npm
-

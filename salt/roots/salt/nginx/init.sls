@@ -7,6 +7,17 @@ nginx:
         - reload: True
         - require:
             - pkg: nginx
+
+/etc/nginx/nginx.conf:
+    file:
+        - managed
+        - source: salt://nginx/nginx.conf
+        - makedirs: True
+        - user: root
+        - group: root
+        - mode: 644
+        - service: nginx
+
 /etc/nginx/sites-available/local.dev.com:
     file:
         - managed
@@ -20,6 +31,7 @@ nginx:
         - group: root
         - mode: 644
         - service: nginx
+
 nginx_run:
   service.running:
     - name: nginx
