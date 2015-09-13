@@ -1,3 +1,7 @@
+git-core:
+    pkg:
+        - installed
+
 nodejs:
     pkg:
         - installed

@@ -1,18 +1,10 @@
 <!DOCTYPE>
 <html>
     <head>
-        <link rel="stylesheet" href="/dest/styles/style.css"/>        
+        <link rel="stylesheet" href="/dest/styles/style.css"/>
     </head>
-    <body>
-        <div class="main">
-            <canvas id="canvas" class="canvas"></canvas>
-        </div>
-
-        <div class="control">
-            <input type="number" id="frequency" min="1" max="10000" value="440"/>
-        </div>
-        <p id="volume"></p>
-
-        <script type="text/javascript" src="/dest/js/main.js"></script>
+    <body class="container">
+        <div id="app"></div>
+        <script src="/dest/js/app.js"></script>
     </body>
 </html>

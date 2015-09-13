@@ -3,4 +3,3 @@ postinstall.sh:
         - source: salt://postinstall/postinstall.sh
         - user: root
         - group: root
-        - shell: /bin/bash

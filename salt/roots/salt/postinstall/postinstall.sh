@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Restarting nginx service
 sudo service nginx restart
 
 echo 'Npm installing required packages'
-cd /var/www/app && sudo npm install
+cd /var/www/app && sudo npm install --no-bin-links
 echo 'Done installing npm required packages'
 
 echo 'Forever start node server'
