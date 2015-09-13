@@ -7,13 +7,7 @@ var Layout = React.createClass({
             <div className="main">
                 <Menu />
                 <div className="content">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">Heading</div>
-                        <div className="panel-body">
-                            {this.props.children}
-                        </div>
-                        <div className="panel-footer"></div>
-                    </div>
+                    {this.props.children}
                 </div>
             </div>
         );
