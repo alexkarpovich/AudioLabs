@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 var Menu = React.createClass({
     render: function() {
@@ -17,7 +18,7 @@ var Menu = React.createClass({
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li><a href="#">Link</a></li>
+                            <li><Link to={'/stage'}>Stage</Link></li>
                         </ul>
 
                         <ul className="nav navbar-nav navbar-right">
