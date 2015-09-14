@@ -16,6 +16,9 @@ var Page = React.createClass({
     componentDidMount: function() {
         StageStore.addChangeListener(this._onChange);
     },
+    componentWillReceiveProps: function(props) {
+        this.setState(getStoreById(props.params.id));
+    },
     _onChange: function() {
         this.setState(getStoreById(this.props.params.id));
     },
