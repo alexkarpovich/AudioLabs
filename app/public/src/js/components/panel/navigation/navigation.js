@@ -8,24 +8,23 @@ function getStages() {
     return {stages: StageStore.getStages()};
 }
 
-var Navigator = React.createClass({
+var Navigation = React.createClass({
     getInitialState: function() {
         return getStages();
     },
     render: function() {
-
-        var stages = this.state.stages.map(function(stage, index) {
+        var items = Object.keys(this.state.stages).map(function(key, index) {
             return (
-                <NavItem key={index} stageId={index} header={stage.header} />
+                <NavItem key={index} stage={this.state.stages[key]} />
             );
-        });
+        }.bind(this));
 
         return (
-            <div className="navigator">
-                {stages}
+            <div className="stage-navigation">
+                {items}
             </div>
         );
     }
 });
 
-module.exports = Navigator;
+module.exports = Navigation;

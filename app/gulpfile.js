@@ -23,5 +23,5 @@ gulp.task('browserify', function(){
 });
 
 gulp.task('default', ['less', 'browserify'], function() {
-    return gulp.watch('./public/src/*/*.*', ['less', 'browserify']);
+    return gulp.watch('./public/src/**/*.*', ['less', 'browserify']);
 });

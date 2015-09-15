@@ -4,18 +4,20 @@ var AppDispatcher = require('../dispatcher/app-dispatcher');
 var assign = require('react/lib/Object.assign');
 var EventEmitter = require('events').EventEmitter;
 
-var _stages = [
-    {
-        "header": "Stage 1",
-        "short": "Short description of stage 1",
-        "description": "Description 1"
+var _stages = {
+    'introduction': {
+        title: 'Introduction',
+        short: 'This is about some musical things'
     },
-    {
-        "header": "Stage 2",
-        "short": "Short description of stage 2",
-        "description": "Description 2"
+    'musical-intervals': {
+        title: 'Musical Intervals',
+        short: 'This is about what is musical intervals'
+    },
+    'pitch-detection': {
+        title: 'Pitch Detection',
+        short: 'Final test of your hearing'
     }
-];
+};
 
 var EVENT_CHANGE = 'change';
 
