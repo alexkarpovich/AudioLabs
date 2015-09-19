@@ -8,13 +8,13 @@ var EventEmitter = require('events').EventEmitter;
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var $ = require('jquery');
 
-var BUFFER_SIZE = 2048;
+let BUFFER_SIZE = 2048;
 
-var _mediaStream = null;
-var _audioContext = null;
-var _source = null;
-var _analyser = null;
-
+let _mediaStream = null;
+let _audioContext = null;
+let _source = null;
+let _analyser = null;
+let _pitchDetector = null;
 function getMediaStream() {
     var deferred = $.Deferred();
 
@@ -54,14 +54,29 @@ var AudioStore = assign(EventEmitter.prototype, {
         this.removeListener(eventConst, callback);
     },
 
+    _gotMediaStream: function(stream) {
+        _mediaStream = stream;
+        this.emitEvent(AudioStoreConstants.GOT_USER_MEDIA);
+
+        _pitchDetector = new PitchDetect(stream);
+    },
+
+    _gotAudioContext: function() {
+        _audioContext = new AudioContext();
+        this.emitEvent(AudioStoreConstants.GOT_AUDIO_CONTEXT);
+    },
+
+    _gotAnalyser: function() {
+        _analyser = _audioContext.createAnalyser();
+        _analyser.fftSize = BUFFER_SIZE;
+        this.emitEvent(AudioStoreConstants.GOT_ANALYSER);
+    },
+
     initAudio: function() {
         getMediaStream().then(function(stream) {
-            _audioContext = new AudioContext();
-            this.emitEvent(AudioStoreConstants.GOT_AUDIO_CONTEXT);
-            this.emitEvent(AudioStoreConstants.GOT_USER_MEDIA);
-            _analyser = _audioContext.createAnalyser();
-            _analyser.fftSize = BUFFER_SIZE;
-            this.emitEvent(AudioStoreConstants.GOT_ANALYSER);
+            this._gotAudioContext();
+            this._gotMediaStream(stream);
+            this._gotAnalyser();
             _source = _audioContext.createMediaStreamSource(stream);
             _source.connect(_audioContext.destination);
             _source.connect(_analyser);
@@ -73,8 +88,7 @@ var AudioStore = assign(EventEmitter.prototype, {
     },
 
     getPitch: function() {
-        var pitchDetect = new PitchDetect(_mediaStream);
-        return pitchDetect.getPitch();
+        return _pitchDetector.getPitch();
     }
 });
 

@@ -22,6 +22,7 @@ npm-packages:
         - names:
             - bower
             - gulp
+            - grunt-cli
             - forever
             - express-generator
         - require:
