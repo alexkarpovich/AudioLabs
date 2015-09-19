@@ -1,5 +1,5 @@
-var React = require('react');
-var Menu = require('./components/menu/menu');
+import React from 'react';
+import Menu from './components/menu/menu';
 
 var Layout = React.createClass({
     render: function() {

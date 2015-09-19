@@ -1,5 +1,7 @@
 var browserify = require('browserify');
 var reactify = require('reactify');
+var es6ify = require('es6ify');
+var babelify = require('babelify');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var gulp = require('gulp');
@@ -15,8 +17,11 @@ gulp.task('less', function () {
 });
 
 gulp.task('browserify', function(){
+    es6ify.traceurOverrides = {experimental: true};
+
     browserify('./public/src/js/app.js')
-        .transform('reactify')
+        .transform(babelify)
+        .transform(es6ify.configure(/.jsx/))
         .bundle()
         .pipe(source('app.js'))
         .pipe(gulp.dest('./public/dest/js/'));

@@ -4,6 +4,7 @@ var React = require('react');
 var AudioStore = require('../../stores/audio-store');
 var AudioStoreConstants = require('../../constants/audio-store/audio-store');
 var WaveForm = require('./waveform/waveform');
+var ScorePanel = require('./score-panel/score-panel');
 
 AudioStore.initAudio();
 
@@ -26,6 +27,7 @@ var PitchDetector = React.createClass({
         return (
             <div className="pitch-detector">
                 <WaveForm />
+                <ScorePanel />
                 <div className="controls">
                     <button className="btn btn-danger btn-block btn-md">Record</button>
                 </div>
