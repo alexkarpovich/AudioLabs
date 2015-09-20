@@ -21,13 +21,12 @@
     "react": "0.13.0",
     "react-router": "1.0.0-rc1",
     "react-router-component": "0.26.0",
-    "react-markdown": "1.0.3",
+    "showdown": "^1.2.3",
     "bootstrap": "3.3.5",
     "jquery": "2.1.4",
     "history": "1.9.0",
     "pitch-detect": "^0.0.2",
-    "vextab": "^2.0",
-    "mudcube/MIDI.js": "^0.3.0"
+    "vextab": "^2.0"
   },
   "devDependencies": {
     "browserify": "^6.2.0",

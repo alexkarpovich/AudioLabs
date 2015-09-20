@@ -1,3 +1,11 @@
+$script = <<SCRIPT
+  echo 'Forever start node server'
+  cd /var/www/app
+  forever stopall
+  NODE_ENV=development forever start --append --uid "audiolabs" ./bin/www
+  echo 'Done forever start server'
+SCRIPT
+
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
@@ -13,4 +21,6 @@ Vagrant.configure(2) do |config|
     salt.minion_config = "salt/minion"
     salt.run_highstate = true
   end
+
+  config.vm.provision "shell", inline: $script
 end

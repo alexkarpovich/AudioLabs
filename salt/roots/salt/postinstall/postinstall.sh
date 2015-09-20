@@ -13,7 +13,9 @@ grunt
 echo 'Vextab building done'
 
 echo 'MIDI.js building'
+cd /var/www/app && sudo npm install mudcube/MIDI.js --no-bin-links
 cd /var/www/app/node_modules/midi && sudo npm install --no-bin-links
+sudo npm install xmlhttprequest --no-bin-links
 grunt
 echo 'MIDI.js building done'
 
