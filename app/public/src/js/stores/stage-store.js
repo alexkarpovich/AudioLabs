@@ -7,16 +7,16 @@ var EventEmitter = require('events').EventEmitter;
 
 var _stages = {
     'introduction': {
-        title: 'Introduction',
-        short: 'This is about some musical things'
+        title: 'Введение',
+        short: 'Для чего предназначен ресурс, чем он может помочь и как им пользоваться'
     },
     'musical-intervals': {
-        title: 'Musical Intervals',
-        short: 'This is about what is musical intervals'
+        title: 'Музыкальные интервалы',
+        short: 'Краткая теория музыкальных интервалов, их роль и применение в музыке'
     },
     'pitch-detection': {
-        title: 'Pitch Detection',
-        short: 'Final test of your hearing'
+        title: 'Определение тона голоса',
+        short: 'Тест разбит на несколько этапов, на каждом из которых проверяется конкретный интервал'
     }
 };
 
