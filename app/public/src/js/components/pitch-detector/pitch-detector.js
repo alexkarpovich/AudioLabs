@@ -27,6 +27,11 @@ var PitchDetector = React.createClass({
     _gotAnalyser: function () {
 
     },
+
+    playPrimaSound: function() {
+
+    },
+
     checkPitch: function() {
         this.setState({pitch: AudioStore.getPitch()});
     },
@@ -36,7 +41,8 @@ var PitchDetector = React.createClass({
                 <WaveForm />
                 <ScorePanel pitch={this.state.pitch}/>
                 <div className="controls">
-                    <button className="btn btn-danger btn-block btn-md" onClick={this.checkPitch}>Check Pitch</button>
+                    <button className="prima btn btn-default btn-md" onClick={this.playPrimaSound}>Прима</button>
+                    <button className="detect btn btn-danger btn-md" onClick={this.checkPitch}>Определить тон</button>
                 </div>
             </div>
         );

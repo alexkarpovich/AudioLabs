@@ -7,16 +7,22 @@ var EventEmitter = require('events').EventEmitter;
 
 var _stages = {
     'introduction': {
+        key: 'introduction',
         title: 'Введение',
-        short: 'Для чего предназначен ресурс, чем он может помочь и как им пользоваться'
+        short: 'Для чего предназначен ресурс, чем он может помочь и как им пользоваться',
+        active: true
     },
     'musical-intervals': {
+        key: 'musical-intervals',
         title: 'Музыкальные интервалы',
-        short: 'Краткая теория музыкальных интервалов, их роль и применение в музыке'
+        short: 'Краткая теория музыкальных интервалов, их роль и применение в музыке',
+        active: false
     },
     'pitch-detection': {
+        key: 'pitch-detection',
         title: 'Определение тона голоса',
-        short: 'Тест разбит на несколько этапов, на каждом из которых проверяется конкретный интервал'
+        short: 'Тест разбит на несколько этапов, на каждом из которых проверяется конкретный интервал',
+        active: false
     }
 };
 
@@ -29,16 +35,16 @@ function getStages() {
 }
 
 var StageStore = assign(EventEmitter.prototype, {
-    emitChange: function() {
-        this.emit(StageStoreConstants.CHANGED);
+    emitEvent: function(eventConstant) {
+        this.emit(eventConstant);
     },
 
-    addChangeListener: function(callback) {
-        this.on(StageStoreConstants.CHANGED, callback);
+    subscribe: function(eventConstant, callback) {
+        this.on(eventConstant, callback);
     },
 
-    removeChangeListener: function(callback) {
-        this.removeListener(StageStoreConstants.CHANGED, callback);
+    unsubscribe: function(eventConstant, callback) {
+        this.removeListener(eventConstant, callback);
     },
 
     getStages: function() {
@@ -47,6 +53,28 @@ var StageStore = assign(EventEmitter.prototype, {
 
     getStageById: function(id) {
         return getStageById(id);
+    },
+
+    setActiveStage: function(id) {
+        if (_stages[id]) {
+            Object.keys(_stages).forEach(function (key) {
+                _stages[key].active = key === id;
+            });
+
+            this.emitEvent(StageStoreConstants.STAGE_CHANGED);
+        }
+    },
+
+    getActiveStage: function() {
+        var activeStage = null;
+
+        Object.keys(_stages).forEach(function(key) {
+            if (_stages[key].active) {
+                activeStage = _stages[key];
+            }
+        });
+
+        return activeStage;
     }
 });
 

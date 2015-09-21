@@ -6,7 +6,7 @@ var Navigation = require('./navigation/navigation');
 var Panel = React.createClass({
     render: function() {
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-default panel-component">
                 <div className="panel-body">
                     <div className="navigation col-sm-3 col-md-3 col-lg-3">
                         <Navigation />

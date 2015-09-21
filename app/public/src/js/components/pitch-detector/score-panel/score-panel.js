@@ -3,17 +3,17 @@
 import React from 'react';
 import vextab from 'vextab';
 
-let VexTab = vextab.VexTab;
-let Artist = vextab.Artist;
-let Renderer = vextab.Vex.Flow.Renderer;
+var VexTab = vextab.VexTab;
+var Artist = vextab.Artist;
+var Renderer = vextab.Vex.Flow.Renderer;
 
-let state = {
+var state = {
     baseNote: 'C',
     expectedNote: 'E',
     actualNote: 'E'
 };
 
-let ScorePanel = React.createClass({
+var ScorePanel = React.createClass({
     getInitialState: function() {
         return state;
     },
@@ -27,7 +27,7 @@ let ScorePanel = React.createClass({
     },
 
     componentWillReceiveProps: function(props) {
-        if (props.pitch.type === 'confident') {
+        if (props.pitch && props.pitch.type === 'confident') {
             this.state.actualNote = props.pitch.note;
 
             this.repaintVextab();
