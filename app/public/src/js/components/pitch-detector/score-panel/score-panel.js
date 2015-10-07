@@ -3,6 +3,7 @@
 var React = require('react');
 var vextab = require('vextab');
 var StageStore = require('../../../stores/stage-store');
+var StageStoreAction = require('../../../actions/stage-store/stage-store');
 var StageStoreConstants = require('../../../constants/stage-store/stage-store');
 
 var VexTab = vextab.VexTab;
@@ -33,6 +34,11 @@ var ScorePanel = React.createClass({
     componentWillReceiveProps: function(props) {
         if (props.pitch && props.pitch.type === 'confident') {
             this.state.actualNote = props.pitch.note;
+
+            if (this.state.actualNote == this.state.expectedNote) {
+                StageStoreAction.successPitch();
+            }
+
             this.repaintVextab();
         }
     },

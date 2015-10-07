@@ -12,6 +12,7 @@ var StageItem = React.createClass({
 
 	componentWillMount: function() {
 		StageStore.subscribe(StageStoreConstants.PITCH_STAGE_CHANGED, this._onChangePitchStage);
+		StageStore.subscribe(StageStoreConstants.PITCH_SUCCESS_DONE, this._onChangePitchStage);
 	},
 
 	_onChangePitchStage: function () {

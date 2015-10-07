@@ -9,6 +9,12 @@ var StageStoreAction = {
 			type: StageStoreConstants.CHANGE_PITCH_STAGE,
 			id: pitchStageId
 		});
+	},
+
+	successPitch: function () {
+		AppDispatcher.handleViewAction({
+			type: StageStoreConstants.PITCH_SUCCESS
+		});
 	}
 };
 

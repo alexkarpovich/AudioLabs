@@ -166,6 +166,18 @@ var StageStore = assign(EventEmitter.prototype, {
         });
 
         return activePitchStage;
+    },
+
+    setSuccessPitch: function () {
+        _pitchStages = _pitchStages.map(function (stage) {
+            if (stage.isActive) {
+                stage.isDone = true;
+            }
+
+            return stage;
+        });
+
+        this.emitEvent(StageStoreConstants.PITCH_SUCCESS_DONE);
     }
 });
 
@@ -173,6 +185,10 @@ StageStore.dispatchToken = AppDispatcher.register(function(payload) {
     switch (payload.action.type) {
         case StageStoreConstants.CHANGE_PITCH_STAGE:
             StageStore.setActivePitchStage(payload.action.id);
+            break;
+
+        case StageStoreConstants.PITCH_SUCCESS:
+            StageStore.setSuccessPitch();
             break;
     }
 });
