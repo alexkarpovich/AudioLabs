@@ -12,7 +12,7 @@ var PitchStages = React.createClass({
 		
 		var items = this.state.stages.map(function (item) {
 			return (
-				<StageItem data={item} />
+				<StageItem id={item.id} />
 			);
 		});
 

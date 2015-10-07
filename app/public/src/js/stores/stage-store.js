@@ -29,46 +29,54 @@ var _stages = {
 var _pitchStages = [
     {
         id: 0,
-        title: 'Малая секунда',
+        title: 'Прима',
+        note: 'C',
         isDone: 0,
         isActive: 1
     },
     {
         id: 1,
-        title: 'Большая секунда',
+        title: 'Малая секунда',
+        note: 'C#',
         isDone: 0,
         isActive: 0
     },
     {
         id: 2,
-        title: 'Малая терция',
-        isDone: 1,
+        title: 'Большая секунда',
+        note: 'D',
+        isDone: 0,
         isActive: 0
     },
     {
         id: 3,
-        title: 'Большая терция',
+        title: 'Малая терция',
+        note: 'D#',
         isDone: 0,
         isActive: 0
     },
     {
         id: 4,
-        title: 'Чистая кварта',
+        title: 'Большая терция',
+        note: 'E',
         isDone: 0,
         isActive: 0
     },
     {
         id: 5,
-        title: 'Чистая квинта',
+        title: 'Чистая кварта',
+        note: 'F',
         isDone: 0,
         isActive: 0
     },
     {
         id: 6,
-        title: 'Октава',
+        title: 'Чистая квинта',
+        note: 'G',
         isDone: 0,
         isActive: 0
     }
+
 ];
 
 function getStageById(id) {
@@ -126,6 +134,18 @@ var StageStore = assign(EventEmitter.prototype, {
         return _pitchStages;
     },
 
+    getPitchStageById: function (pitchStageId) {
+        var pitchStage = null;
+
+        _pitchStages.forEach(function(stage) {
+            if (pitchStageId === stage.id) {
+                pitchStage = stage;
+            }
+        });
+
+        return pitchStage;
+    },
+
     setActivePitchStage: function (id) {
         _pitchStages = _pitchStages.map(function (stage) {
             stage.isActive = stage.id == id;
@@ -134,14 +154,26 @@ var StageStore = assign(EventEmitter.prototype, {
         });
 
         this.emitEvent(StageStoreConstants.PITCH_STAGE_CHANGED);
-        console.log(_pitchStages);
+    },
+
+    getActivePitchStage: function () {
+        var activePitchStage = null;
+
+        _pitchStages.forEach(function (stage) {
+            if (stage.isActive) {
+                activePitchStage = stage;
+            }
+        });
+
+        return activePitchStage;
     }
 });
 
 StageStore.dispatchToken = AppDispatcher.register(function(payload) {
-    console.log(payload);
     switch (payload.action.type) {
-        case StageStoreConstants.PITCH_STAGE_CHANGED: console.log(payload.action);
+        case StageStoreConstants.CHANGE_PITCH_STAGE:
+            StageStore.setActivePitchStage(payload.action.id);
+            break;
     }
 });
 

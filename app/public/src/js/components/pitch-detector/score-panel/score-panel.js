@@ -1,7 +1,9 @@
 'use strict';
 
-import React from 'react';
-import vextab from 'vextab';
+var React = require('react');
+var vextab = require('vextab');
+var StageStore = require('../../../stores/stage-store');
+var StageStoreConstants = require('../../../constants/stage-store/stage-store');
 
 var VexTab = vextab.VexTab;
 var Artist = vextab.Artist;
@@ -18,20 +20,28 @@ var ScorePanel = React.createClass({
         return state;
     },
     componentDidMount: function() {
+        StageStore.subscribe(StageStoreConstants.PITCH_STAGE_CHANGED, this._onPitchStageChanged);
         window.addEventListener('resize', this.repaintVextab);
         this.repaintVextab();
     },
 
     componentWillUnmount: function() {
         window.removeEventListener('resize', this.repaintVextab);
+        StageStore.unsubscribe(StageStoreConstants.PITCH_STAGE_CHANGED, this._onPitchStageChanged);
     },
 
     componentWillReceiveProps: function(props) {
         if (props.pitch && props.pitch.type === 'confident') {
             this.state.actualNote = props.pitch.note;
-
             this.repaintVextab();
         }
+    },
+
+    _onPitchStageChanged: function () {
+        var pitchStage = StageStore.getActivePitchStage();
+
+        this.state.expectedNote = pitchStage.note;
+        this.repaintVextab();
     },
 
     repaintVextab: function(e) {
@@ -43,7 +53,7 @@ var ScorePanel = React.createClass({
         let vextab = new VexTab(artist);
 
         let vexline = `tabstave notation=true tablature=false\n \
-            notes ${this.state.baseNote}/4 ${this.state.expectedNote}/4 $Expect$ | ${this.state.actualNote}/4 $Actual$\n`;
+            notes ${this.state.baseNote}/4 ${this.state.expectedNote}/4 $Ожидается$ | ${this.state.actualNote}/4 $Результат$\n`;
 
         try {
             vextab.parse(vexline);
