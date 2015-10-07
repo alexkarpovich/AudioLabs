@@ -28,25 +28,46 @@ var _stages = {
 
 var _pitchStages = [
     {
-        title: 'Малая секунда'
+        id: 0,
+        title: 'Малая секунда',
+        isDone: 0,
+        isActive: 1
     },
     {
-        title: 'Большая секунда'
+        id: 1,
+        title: 'Большая секунда',
+        isDone: 0,
+        isActive: 0
     },
     {
-        title: 'Малая терция'
+        id: 2,
+        title: 'Малая терция',
+        isDone: 1,
+        isActive: 0
     },
     {
-        title: 'Большая терция'
+        id: 3,
+        title: 'Большая терция',
+        isDone: 0,
+        isActive: 0
     },
     {
-        title: 'Чистая кварта'
+        id: 4,
+        title: 'Чистая кварта',
+        isDone: 0,
+        isActive: 0
     },
     {
-        title: 'Чистая квинта'
+        id: 5,
+        title: 'Чистая квинта',
+        isDone: 0,
+        isActive: 0
     },
     {
-        title: 'Октава'
+        id: 6,
+        title: 'Октава',
+        isDone: 0,
+        isActive: 0
     }
 ];
 
@@ -103,6 +124,23 @@ var StageStore = assign(EventEmitter.prototype, {
 
     getPitchStages: function() {
         return _pitchStages;
+    },
+
+    setActivePitchStage: function (id) {
+        _pitchStages = _pitchStages.map(function (stage) {
+            stage.isActive = stage.id == id;
+
+            return stage;
+        });
+
+        this.emitEvent(StageStoreConstants.PITCH_STAGE_CHANGED);
+        console.log(_pitchStages);
+    }
+});
+
+StageStore.dispatchTocken = AppDispatcher.register(function (action) {
+    switch (action.type) {
+        case StageStoreConstants.PITCH_STAGE_CHANGED: console.log(action);
     }
 });
 
