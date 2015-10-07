@@ -138,9 +138,10 @@ var StageStore = assign(EventEmitter.prototype, {
     }
 });
 
-StageStore.dispatchTocken = AppDispatcher.register(function (action) {
-    switch (action.type) {
-        case StageStoreConstants.PITCH_STAGE_CHANGED: console.log(action);
+StageStore.dispatchToken = AppDispatcher.register(function(payload) {
+    console.log(payload);
+    switch (payload.action.type) {
+        case StageStoreConstants.PITCH_STAGE_CHANGED: console.log(payload.action);
     }
 });
 
