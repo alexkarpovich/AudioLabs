@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'coremidi',
+1 verbose cli   '--no-bin-links' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'coremidi@^0.1.1', null ]
+6 verbose cache add name=undefined spec="coremidi@^0.1.1" args=["coremidi@^0.1.1",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'coremidi@^0.1.1',
+7 verbose parsed url   path: 'coremidi@^0.1.1',
+7 verbose parsed url   href: 'coremidi@^0.1.1' }
+8 verbose cache add name="coremidi" spec="^0.1.1" args=["coremidi","^0.1.1"]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: '^0.1.1',
+9 verbose parsed url   path: '^0.1.1',
+9 verbose parsed url   href: '^0.1.1' }
+10 verbose addNamed [ 'coremidi', '^0.1.1' ]
+11 verbose addNamed [ null, '>=0.1.1-0 <0.2.0-0' ]
+12 silly lockFile b739535f-coremidi-0-1-1 coremidi@^0.1.1
+13 verbose lock coremidi@^0.1.1 /home/vagrant/.npm/b739535f-coremidi-0-1-1.lock
+14 silly addNameRange { name: 'coremidi', range: '>=0.1.1-0 <0.2.0-0', hasData: false }
+15 verbose registry.get coremidi not expired, no request
+16 silly addNameRange number 2 { name: 'coremidi', range: '>=0.1.1-0 <0.2.0-0', hasData: true }
+17 silly addNameRange versions [ 'coremidi', [ '0.0.1', '0.0.2', '0.0.3', '0.1.0', '0.1.1' ] ]
+18 verbose addNamed [ 'coremidi', '0.1.1' ]
+19 verbose addNamed [ '0.1.1', '0.1.1' ]
+20 silly lockFile a76d0ddb-coremidi-0-1-1 coremidi@0.1.1
+21 verbose lock coremidi@0.1.1 /home/vagrant/.npm/a76d0ddb-coremidi-0-1-1.lock
+22 silly lockFile a76d0ddb-coremidi-0-1-1 coremidi@0.1.1
+23 silly lockFile a76d0ddb-coremidi-0-1-1 coremidi@0.1.1
+24 silly lockFile b739535f-coremidi-0-1-1 coremidi@^0.1.1
+25 silly lockFile b739535f-coremidi-0-1-1 coremidi@^0.1.1
+26 silly resolved [ { name: 'coremidi',
+26 silly resolved     version: '0.1.1',
+26 silly resolved     description: 'interact with CoreMIDI services on Mac OS platforms',
+26 silly resolved     main: 'index.js',
+26 silly resolved     dependencies: { bindings: '~1.0.0', through: '~1.0.0' },
+26 silly resolved     devDependencies: { mocha: '*', 'midi-api': '~0.2.0' },
+26 silly resolved     scripts: { test: 'make test', install: 'node-gyp rebuild' },
+26 silly resolved     repository:
+26 silly resolved      { type: 'git',
+26 silly resolved        url: 'git://github.com/carlos8f/node-coremidi.git' },
+26 silly resolved     homepage: 'https://github.com/carlos8f/node-coremidi',
+26 silly resolved     keywords: [ 'midi', 'mac', 'music', 'interface', 'awesome' ],
+26 silly resolved     author:
+26 silly resolved      { name: 'Carlos Rodriguez',
+26 silly resolved        email: 'carlos@s8f.org',
+26 silly resolved        url: 'http://s8f.org/' },
+26 silly resolved     license: 'MIT',
+26 silly resolved     os: [ 'darwin' ],
+26 silly resolved     gypfile: true,
+26 silly resolved     readme: 'coremidi\n========\n\nallow Node.js to interact with CoreMIDI services on Mac OS platforms\n\nUsage\n-----\n\n`coremidi` exports a function which returns a stream. MIDI messages are sent by\nwriting an array to the stream.\n\n### Simple example\n\nPlaying middle C:\n\n```javascript\nvar coremidi = require(\'coremidi\')();\n\ncoremidi.write([144, 60, 127]);\nsetTimeout(function() {\n  coremidi.write([128, 60, 0]);\n}, 2000);\n```\n\n### Example with [midi-api](https://github.com/carlos8f/node-midi-api)\n\n```javascript\nvar coremidi = require(\'coremidi\')\n  , midi = require(\'midi-api\')()\n\nmidi\n  .bank(2)\n  .program(4)\n  .rest(500)\n\nfunction maj7 (root) {\n  midi\n    .noteOn(root)\n    .noteOn(root + 4)\n    .noteOn(root + 7)\n    .noteOn(root + 11)\n    .rest(1000)\n    .noteOff()\n}\n\nmaj7(60)\nmaj7(61)\nmaj7(62)\nmaj7(63)\n\nmidi.pipe(coremidi());\n```\n\n- - -\n\n### Developed by [Terra Eclipse](http://www.terraeclipse.com)\nTerra Eclipse, Inc. is a nationally recognized political technology and\nstrategy firm located in Aptos, CA and Washington, D.C.\n\n- - -\n\n### License: MIT\n\n- Copyright (C) 2012 Carlos Rodriguez (http://s8f.org/)\n- Copyright (C) 2012 Terra Eclipse, Inc. (http://www.terraeclipse.com/)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the &quot;Software&quot;), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished\nto do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.',
+26 silly resolved     readmeFilename: 'README.md',
+26 silly resolved     bugs: { url: 'https://github.com/carlos8f/node-coremidi/issues' },
+26 silly resolved     _id: 'coremidi@0.1.1',
+26 silly resolved     _from: 'coremidi@^0.1.1' } ]
+27 info install coremidi@0.1.1 into /var/www/app
+28 info installOne coremidi@0.1.1
+29 error notsup Unsupported
+29 error notsup Not compatible with your operating system or architecture: coremidi@0.1.1
+29 error notsup Valid OS:    darwin
+29 error notsup Valid Arch:  any
+29 error notsup Actual OS:   linux
+29 error notsup Actual Arch: x64
+30 error System Linux 3.13.0-63-generic
+31 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "coremidi" "--no-bin-links"
+32 error cwd /var/www/app
+33 error node -v v0.10.25
+34 error npm -v 1.3.10
+35 error code EBADPLATFORM
+36 verbose exit [ 1, true ]

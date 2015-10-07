@@ -26,6 +26,30 @@ var _stages = {
     }
 };
 
+var _pitchStages = [
+    {
+        title: 'Малая секунда'
+    },
+    {
+        title: 'Большая секунда'
+    },
+    {
+        title: 'Малая терция'
+    },
+    {
+        title: 'Большая терция'
+    },
+    {
+        title: 'Чистая кварта'
+    },
+    {
+        title: 'Чистая квинта'
+    },
+    {
+        title: 'Октава'
+    }
+];
+
 function getStageById(id) {
     return _stages[id];
 }
@@ -75,6 +99,10 @@ var StageStore = assign(EventEmitter.prototype, {
         });
 
         return activeStage;
+    },
+
+    getPitchStages: function() {
+        return _pitchStages;
     }
 });
 
