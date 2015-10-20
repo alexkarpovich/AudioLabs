@@ -87,6 +87,21 @@ function getStages() {
     return _stages;
 }
 
+function checkComplete() {
+    var pitchStagesCount = _pitchStages.length;
+    var doneCount = 0;
+
+    _pitchStages.forEach(function (stage) {
+        if (stage.isDone) {
+            doneCount++;
+        }
+    });
+
+    if (pitchStagesCount == doneCount) {
+        alert('ПОБЕДА!!! Вы прошли тест на ура. Сейчас можете идти в музыкальное училище');
+    }
+}
+
 var StageStore = assign(EventEmitter.prototype, {
     emitEvent: function(eventConstant) {
         this.emit(eventConstant);
@@ -176,6 +191,8 @@ var StageStore = assign(EventEmitter.prototype, {
 
             return stage;
         });
+
+        checkComplete();
 
         this.emitEvent(StageStoreConstants.PITCH_SUCCESS_DONE);
     }

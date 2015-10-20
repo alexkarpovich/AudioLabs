@@ -13,9 +13,6 @@ var Layout = React.createClass({
                 <div className="panel-body">
                     {this.props.children}
                 </div>
-                <div className="panel-footer">
-                    Footer
-                </div>
             </div>
         );
     }

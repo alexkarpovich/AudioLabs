@@ -12,8 +12,8 @@ var Renderer = vextab.Vex.Flow.Renderer;
 
 var state = {
     baseNote: 'C',
-    expectedNote: 'E',
-    actualNote: 'E'
+    expectedNote: 'C',
+    actualNote: 'C'
 };
 
 var ScorePanel = React.createClass({
