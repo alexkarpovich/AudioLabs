@@ -1,4 +1,6 @@
 .idea
 .vagrant
 app/node_modules
-app/public/dest/*/*
+app/bower_components
+app/public/dest/*
+!app/public/dest/images/*

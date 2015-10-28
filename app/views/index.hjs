@@ -5,6 +5,7 @@
     </head>
     <body class="container">
         <div id="app"></div>
+        <script src="/dest/js/lib.js"></script>
         <script src="/dest/js/app.js"></script>
     </body>
 </html>

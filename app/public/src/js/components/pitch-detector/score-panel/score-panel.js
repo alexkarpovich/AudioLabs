@@ -2,6 +2,7 @@
 
 var React = require('react');
 var vextab = require('vextab');
+var alerfity = require('alertify');
 var StageStore = require('../../../stores/stage-store');
 var StageStoreAction = require('../../../actions/stage-store/stage-store');
 var StageStoreConstants = require('../../../constants/stage-store/stage-store');
@@ -24,6 +25,7 @@ var ScorePanel = React.createClass({
         StageStore.subscribe(StageStoreConstants.PITCH_STAGE_CHANGED, this._onPitchStageChanged);
         window.addEventListener('resize', this.repaintVextab);
         this.repaintVextab();
+        alertify.alert('Поздравляем с успешной победой!!!');
     },
 
     componentWillUnmount: function() {
@@ -37,6 +39,9 @@ var ScorePanel = React.createClass({
 
             if (this.state.actualNote == this.state.expectedNote) {
                 StageStoreAction.successPitch();
+                alertify.success('<div class="message"><img src="/dest/images/smile.png" width="120"><ul>Победа</ul></div>');
+            } else {
+                alertify.error('<div class="message"><img src="/dest/images/sad.png" width="120"><ul>Проблемки</ul></div>');
             }
 
             this.repaintVextab();

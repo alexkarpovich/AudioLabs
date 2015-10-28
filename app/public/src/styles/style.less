@@ -1,4 +1,6 @@
 @import '../../../node_modules/bootstrap/less/bootstrap.less';
+@import (inline) '../../../bower_components/alertify.js/themes/alertify.bootstrap.css';
+@import (inline) '../../../bower_components/alertify.js/themes/alertify.core.css';
 
 body {
   padding: 30px;
@@ -15,6 +17,21 @@ a {
 
 .margin-0 {
   margin: 0;
+}
+
+.message {
+  width: 400px;
+  vertical-align: middle;
+
+  img {
+    float: left;
+  }
+
+  ul {
+    vertical-align: middle;
+    line-height: 120px;
+    font-size: 3em;
+  }
 }
 
 .navigation {

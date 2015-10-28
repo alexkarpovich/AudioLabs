@@ -14,7 +14,11 @@ let _mediaStream = null;
 let _audioContext = null;
 let _source = null;
 let _analyser = null;
+let _oscillator = null;
+let _gain = null;
 let _pitchDetector = null;
+let isPrimaPlaying = false;
+
 function getMediaStream() {
     var deferred = $.Deferred();
 
@@ -69,6 +73,11 @@ var AudioStore = assign(EventEmitter.prototype, {
     _gotAnalyser: function() {
         _analyser = _audioContext.createAnalyser();
         _analyser.fftSize = BUFFER_SIZE;
+        _oscillator = _audioContext.createOscillator();
+        _gain = _audioContext.createGain();
+        _gain.value = 50;
+        _oscillator.type = 'sine';
+        _oscillator.frequency.value = 261.6;
         this.emitEvent(AudioStoreConstants.GOT_ANALYSER);
     },
 
@@ -80,6 +89,8 @@ var AudioStore = assign(EventEmitter.prototype, {
             _source = _audioContext.createMediaStreamSource(stream);
             _source.connect(_audioContext.destination);
             _source.connect(_analyser);
+            _oscillator.connect(_gain);
+            _oscillator.start();
         }.bind(this));
     },
 
@@ -89,6 +100,16 @@ var AudioStore = assign(EventEmitter.prototype, {
 
     getPitch: function() {
         return _pitchDetector.getPitch();
+    },
+
+    playPrima: function () {
+        if (isPrimaPlaying) {
+            _gain.disconnect(_audioContext.destination);
+            isPrimaPlaying = false;
+        } else {
+            _gain.connect(_audioContext.destination);
+            isPrimaPlaying = true;
+        }
     }
 });
 

@@ -1,0 +1,19 @@
+{
+  "name": "y",
+  "main": "app.js",
+  "version": "0.0.0",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "alertify.js": "^0.3.11"
+  }
+}

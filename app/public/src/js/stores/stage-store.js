@@ -4,6 +4,7 @@ var AppDispatcher = require('../dispatcher/app-dispatcher');
 var StageStoreConstants = require('../constants/stage-store/stage-store');
 var assign = require('react/lib/Object.assign');
 var EventEmitter = require('events').EventEmitter;
+var alertify = require('alertify');
 
 var _stages = {
     'introduction': {
@@ -168,6 +169,20 @@ var StageStore = assign(EventEmitter.prototype, {
         return activePitchStage;
     },
 
+    checkCompleteness: function () {
+        var count = 0;
+
+        _pitchStages.forEach(function (stage) {
+            if (stage.isDone) {
+                count++;
+            }
+        });
+
+        if (count == _pitchStages.length) {
+            alertify.alert('Поздравляем с успешной победой!!!');
+        }
+    },
+
     setSuccessPitch: function () {
         _pitchStages = _pitchStages.map(function (stage) {
             if (stage.isActive) {
@@ -176,6 +191,8 @@ var StageStore = assign(EventEmitter.prototype, {
 
             return stage;
         });
+
+        this.checkCompleteness();
 
         this.emitEvent(StageStoreConstants.PITCH_SUCCESS_DONE);
     }

@@ -29,7 +29,7 @@ var PitchDetector = React.createClass({
     },
 
     playPrimaSound: function() {
-
+        AudioStore.playPrima();
     },
 
     checkPitch: function() {
